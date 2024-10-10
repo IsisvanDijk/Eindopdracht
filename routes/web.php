@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\BooksController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,21 +20,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/contact', function() {
-    return view('contact');
-})->name('contact');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
-Route::get('/about-us', function() {
-    $company = 'Fantasy collection';
-    return view('about-us', [
-        'company' => $company
-    ]);
-});
+Route::get('/about-us', [AboutUsController::class, 'show'])->name('about-us');
 
-Route::get('books/{id}', function(string $id) {
-    return view('books', [
-        'id' => $id,
-    ]);
-});
+Route::resource('books', BooksController::class);
+
 
 require __DIR__.'/auth.php';

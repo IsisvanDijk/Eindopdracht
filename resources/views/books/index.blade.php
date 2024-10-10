@@ -8,7 +8,7 @@
     <title>Books</title>
 </head>
 <body>
-<h1>Welcome to the page of {{$id}} </h1>
+<h1>Welcome to the page of .. </h1>
 <p> This book is a ... book</p>
 
 </body>
