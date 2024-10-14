@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\BooksController;
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ListController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 use \App\Http\Controllers\PostController;
 
 Route::get('/', function () {
@@ -20,14 +20,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    //Logged users posted books
     Route::get('/my-posts', [PostController::class, 'show'])->name('posts');
 });
 
+// List page
+Route::get('/list', [ListController::class, 'index'])->name('list');
 
+// Detail page (met een dynamische id)
+Route::get('/detail/{id}', [DetailController::class, 'show'])->name('detail');
 
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-
-Route::get('/about-us', [AboutUsController::class, 'show'])->name('about-us');
 
 Route::resource('books', BooksController::class);
 
