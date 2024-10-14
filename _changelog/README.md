@@ -18,5 +18,17 @@
     geen admin maar rol
 * My post page created
 * PostsController created
-* 
+* app layout edited 
+* My own css added
+* Contact controler deleted
+* About us controller deleted
+* Contact page deleted
+* About us page deleted
+* detail page added
+* list page added
+* list controller added
+* detail controller added
+* my posts page edited
+* navigation layout edited
+* routes edited
 
