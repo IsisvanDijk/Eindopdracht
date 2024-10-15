@@ -32,3 +32,10 @@
 * navigation layout edited
 * routes edited
 
+# 15-10-2024
+* detail and list deleted, were not neccesary
+* Created a books and genres database
+* created a book model
+* edited book controller + renamed it from books to book
+* 
+

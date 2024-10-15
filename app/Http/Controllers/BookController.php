@@ -3,16 +3,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 
-class BooksController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('books.index');
+        $book = new Book();
+        $book->title = 'Once upon a broken heart';
+        $book->description = 'Is part of a universe';
+        $book->genre = 'fantasy';
+
+        return view('books.index', compact('book'));
     }
 
     /**

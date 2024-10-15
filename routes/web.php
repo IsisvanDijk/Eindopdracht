@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\BooksController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\ListController;
+use App\Http\Controllers\DetailController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +32,7 @@ Route::get('/list', [ListController::class, 'index'])->name('list');
 Route::get('/detail/{id}', [DetailController::class, 'show'])->name('detail');
 
 
-Route::resource('books', BooksController::class);
+Route::resource('/books', BookController::class);
 
 
 require __DIR__.'/auth.php';
