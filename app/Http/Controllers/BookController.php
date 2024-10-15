@@ -13,12 +13,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        $book = new Book();
-        $book->title = 'Once upon a broken heart';
-        $book->description = 'Is part of a universe';
-        $book->genre = 'fantasy';
+        $books = Book::all();
 
-        return view('books.index', compact('book'));
+        return view('books.index', compact('books'));
     }
 
     /**
@@ -42,7 +39,9 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $book= book::find($id);
+
+        return view('books.show', compact('book'));
     }
 
     /**

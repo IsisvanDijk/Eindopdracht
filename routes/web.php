@@ -25,13 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-posts', [PostController::class, 'show'])->name('posts');
 });
 
-// List page
-Route::get('/list', [ListController::class, 'index'])->name('list');
-
-// Detail page (met een dynamische id)
-Route::get('/detail/{id}', [DetailController::class, 'show'])->name('detail');
-
-
 Route::resource('/books', BookController::class);
 
 
