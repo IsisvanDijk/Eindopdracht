@@ -13,7 +13,7 @@
                     <ul>
                         <li>{{ $book->image }} </li>
                         <li>{{ $book->author }} </li>
-                        <li>{{ $book->genre_id }} </li>
+                        <li>{{ $book->genre->name }} </li>
                         <li>{{ $book->age_category }} </li>
                         <li>{{ $book->description }} </li>
                         <li> Posted by {{ $book->user_id }}</li>

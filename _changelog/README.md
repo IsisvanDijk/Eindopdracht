@@ -39,3 +39,10 @@
 * edited book controller + renamed it from books to book
 * 
 
+# 16-10-2024
+* Create gemaakt
+* Book model aangepast
+* Genre model gemaakt
+* Genre controller gemaakt
+* Login required for create
+* 

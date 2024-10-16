@@ -23,7 +23,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -31,7 +31,18 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book = new Book();
+
+        $book->title = $request->input(key: 'title');
+        $book->image = $request->input(key: 'image');
+        $book->author = $request->input(key: 'author');
+        $book->age_category = $request->input(key: 'age_category');
+        $book->genre_id = 1;
+        $book->description = $request->input(key: 'description');
+        $book->user_id = 1;
+
+        $book->save();
+        return redirect()->route('books.index');
     }
 
     /**
@@ -49,7 +60,7 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('books.edit');
     }
 
     /**
