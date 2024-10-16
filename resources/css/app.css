@@ -2,3 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+.myflex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+img {
+    height: 30vh;
+}
+
+.width {
+    width: 50vw;
+}
+
+

@@ -45,4 +45,7 @@
 * Genre model gemaakt
 * Genre controller gemaakt
 * Login required for create
+* Images added
+* Changed the show page
+* Added some personal css
 * 
