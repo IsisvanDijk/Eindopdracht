@@ -8,17 +8,17 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100 myflex">
-                    <img src="{{ $book->image }}">
+                    <div class="p-6 text-gray-900 dark:text-gray-100" id="myFlex">
+                        <img src="{{ $book->image }}" alt="{{ $book->title }} cover image">
 
-                    <ul class="width">
-                        <li> > {{ $book->author }} </li>
-                        <li> > {{ $book->genre->name }} </li>
-                        <li> > {{ $book->age_category }} </li>
-                        <li> > {{ $book->description }} </li>
-                    </ul>
+                        <ul class="width">
+                            <li> > {{ $book->author }} </li>
+                            <li> > {{ $book->genre->name }} </li>
+                            <li> > {{ $book->age_category }} </li>
+                            <li> > {{ $book->description }} </li>
+                        </ul>
 
-                </div>
+                    </div>
             </div>
         </div>
     </div>

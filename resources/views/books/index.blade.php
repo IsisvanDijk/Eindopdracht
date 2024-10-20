@@ -15,12 +15,12 @@
                         @auth()
                         <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                            <a href="{{ route('books.create') }}"> Create product <a/>
-
+                            <a href="{{ route('books.create') }}"> Add a book! <a/>
+                            @endauth
                         </div>
-                        @endauth
-                    </div>
+
                 </div>
+
 
                 @foreach ($books as $book)
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-4">

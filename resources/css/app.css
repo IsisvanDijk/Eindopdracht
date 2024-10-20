@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.myflex {
+.myFlex {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -18,3 +18,15 @@ img {
 }
 
 
+#myFlex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.text {
+    background: #111827;
+    padding: 8px 12px;
+    border-radius: 7px;
+}
