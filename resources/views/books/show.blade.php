@@ -16,6 +16,9 @@
                             <li> > {{ $book->genre->name }} </li>
                             <li> > {{ $book->age_category }} </li>
                             <li> > {{ $book->description }} </li>
+                            <br>
+                            <br>
+                            <li> > Posted by: {{ $book->user->name }} <li/>
                         </ul>
 
                     </div>

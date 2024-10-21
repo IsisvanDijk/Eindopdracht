@@ -15,4 +15,11 @@ class Book extends Model
     {
        return $this->belongsTo(Genre::class);
     }
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+
+
+    }
 }

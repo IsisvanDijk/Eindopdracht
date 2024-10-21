@@ -40,12 +40,23 @@
 * 
 
 # 16-10-2024
-* Create gemaakt
-* Book model aangepast
-* Genre model gemaakt
-* Genre controller gemaakt
+* Create made
+* Book model changed
+* Genre model created
+* Genre controller created
 * Login required for create
 * Images added
 * Changed the show page
 * Added some personal css
-* 
+
+# 20-10-2024
+* when logging in go to home
+* css added 
+* create changed 
+* index create button change
+
+# 21-10-2024
+* Connected books and users
+* Made sure form uses database connections
+* Edited book and user model
+* Edited book controller

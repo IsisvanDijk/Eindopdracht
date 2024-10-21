@@ -37,9 +37,9 @@ class BookController extends Controller
         $book->image = $request->input(key: 'image');
         $book->author = $request->input(key: 'author');
         $book->age_category = $request->input(key: 'age_category');
-        $book->genre_id = 1;
+        $book->genre->name = $request->input(key: 'genre');
         $book->description = $request->input(key: 'description');
-        $book->user_id = 1;
+        $book->user_id = auth()->user()->id;
 
         $book->save();
         return redirect()->route('books.index');
