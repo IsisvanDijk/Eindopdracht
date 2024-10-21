@@ -16,12 +16,25 @@ class BookController extends Controller
     {
         $genres = Genre::all();
 
+        // Start building the query for filtering
         $books = Book::query();
 
+        // Apply genre filter if provided
         if ($request->filled('genre_id')) {
             $books->where('genre_id', $request->input('genre_id'));
         }
 
+        // Apply age category filter if provided
+        if ($request->filled('age_category')) {
+            $books->where('age_category', $request->input('age_category'));
+        }
+
+        // Apply author filter if provided
+        if ($request->filled('author')) {
+            $books->where('author', $request->input('author'));
+        }
+
+        // Get the filtered books with genres
         $books = $books->with('genre')->get();
 
         return view('books.index', compact('books', 'genres'));
