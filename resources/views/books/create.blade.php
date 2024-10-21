@@ -25,8 +25,13 @@
                             <x-text-input type="text" id="author" name="author"/>
                         </div>
                         <div>
-                            <x-input-label for="age_category">Age category</x-input-label>
-                            <x-text-input type="text" id="age_category" name="age_category"/>
+                            <x-input-label for="age_category">Select Age Category</x-input-label>
+                            <select id="age_category" name="age_category" class="block font-medium text-sm text-gray-700 dark:text-gray-300 text" required>
+                                <option value="">-- Choose an Age Category --</option>
+                                <option value="adult">adult</option>
+                                <option value="new_adult">new adult</option>
+                                <option value="young_adult">young adult</option>
+                            </select>
                         </div>
                         <div>
                             <x-input-label for="genre" > Select Genre </x-input-label>

@@ -11,6 +11,15 @@ class Book extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'title',
+        'image',
+        'author',
+        'age_category',
+        'genre_id',
+        'description',
+    ];
+
     public function genre(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
        return $this->belongsTo(Genre::class);

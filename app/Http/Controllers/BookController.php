@@ -75,15 +75,43 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-        return view('books.edit');
+        $book = Book::findOrFail($id);
+        $genres = Genre::all();
+        return view('books.edit', compact('book', 'genres'));
     }
+
+
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+
+        // Validatie
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'image' => 'nullable|url',
+            'author' => 'required|string|max:255',
+            'age_category' => 'required|string|max:255',
+            'genre_id' => 'required|exists:genres,id',
+            'description' => 'nullable|string',
+        ]);
+
+        // Boek updaten met nieuwe data
+        $book->update([
+            'title' => $request->title,
+            'image' => $request->image,
+            'author' => $request->author,
+            'age_category' => $request->age_category,
+            'genre_id' => $request->genre_id,
+            'description' => $request->description,
+        ]);
+
+        // Redirect naar de detailpagina van het boek
+        return redirect()->route('books.show', $book->id)->with('success', 'Book updated successfully!');
     }
 
     /**
