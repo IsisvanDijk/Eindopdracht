@@ -21,15 +21,17 @@
                         </tr>
                         <br>
                         @auth()
+                            <div class="row gap-2">
                             <form action="{{ route('books.destroy', $book) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Delete" class="bg-red-500 text-white px-4 py-2 mt-2 rounded-md hover:bg-red-600">
+                                <input type="submit" value="Delete" class="bg-red-500 text-white px-4 py-2 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest">
                             </form>
 
                             <form action="{{ route('books.edit', $book->id) }}" method="get">
                                 <x-primary-button type="submit">Edit Book</x-primary-button>
                             </form>
+                            </div>
                         @endauth
                     </div>
                 </div>
