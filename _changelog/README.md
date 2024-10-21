@@ -60,3 +60,8 @@
 * Made sure form uses database connections
 * Edited book and user model
 * Edited book controller
+* Made my posts usable
+* Moved delete to the my-posts page
+* Edited post controller
+* Changed the layout title from laravel to book collection
+* Gave titles to my pages

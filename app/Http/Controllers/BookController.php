@@ -37,7 +37,7 @@ class BookController extends Controller
         $book->image = $request->input(key: 'image');
         $book->author = $request->input(key: 'author');
         $book->age_category = $request->input(key: 'age_category');
-        $book->genre->name = $request->input(key: 'genre');
+        $book->genre_id = $request->input(key: 'genre');
         $book->description = $request->input(key: 'description');
         $book->user_id = auth()->user()->id;
 
