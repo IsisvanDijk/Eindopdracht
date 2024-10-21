@@ -9,6 +9,16 @@
     justify-content: space-evenly;
 }
 
+.hFlex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.row{
+    flex-direction: row;
+}
+
 img {
     height: 30vh;
 }

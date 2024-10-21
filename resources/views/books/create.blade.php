@@ -29,8 +29,13 @@
                             <x-text-input type="text" id="age_category" name="age_category"/>
                         </div>
                         <div>
-                            <x-input-label for="genre">Genre</x-input-label>
-                            <x-text-input type="text" id="genre" name="genre_id"/>
+                            <x-input-label for="genre" > Select Genre </x-input-label>
+                            <select id="genre" name="genre_id" class="block font-medium text-sm text-gray-700 dark:text-gray-300 text" required>
+                                <option value="">-- Choose a Genre --</option>
+                                @foreach ($genres as $genre)
+                                    <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div>

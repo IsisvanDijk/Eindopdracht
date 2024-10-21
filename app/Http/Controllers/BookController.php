@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -11,19 +12,33 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
+        $genres = Genre::all();
 
-        return view('books.index', compact('books'));
+        $books = Book::query();
+
+        if ($request->filled('genre_id')) {
+            $books->where('genre_id', $request->input('genre_id'));
+        }
+
+        $books = $books->with('genre')->get();
+
+        return view('books.index', compact('books', 'genres'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('books.create');
+        // Fetch all genres from the genres table
+        $genres = Genre::all(); // Fetch all genres
+
+        // Pass genres to the view
+        return view('books.create', compact('genres'));
+
     }
 
     /**
@@ -37,7 +52,7 @@ class BookController extends Controller
         $book->image = $request->input(key: 'image');
         $book->author = $request->input(key: 'author');
         $book->age_category = $request->input(key: 'age_category');
-        $book->genre_id = $request->input(key: 'genre');
+        $book->genre_id = $request->input(key: 'genre_id');
         $book->description = $request->input(key: 'description');
         $book->user_id = auth()->user()->id;
 

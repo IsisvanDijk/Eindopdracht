@@ -1,8 +1,53 @@
 <x-app-layout title="Book list">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Welcome to our book Collection') }}
-        </h2>
+        <div class="hFlex">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Welcome to our book Collection') }}
+            </h2>
+
+            <div>
+                <form method="GET" action="{{ route('books.index') }}">
+
+                    <div class="py-1">
+                        <select name="genre_id" id="genre" class="block font-medium text-sm text-gray-700 dark:text-gray-300 text">
+                            <option value="">Genre</option>
+                            @foreach($genres as $genre)
+                                <option value="{{ $genre->id }}" {{ request('genre_id') == $genre ? 'selected' : ''}}>
+                                    {{ $genre->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="py-1">
+                    <select name="age_category" id="age_category" class="block font-medium text-sm text-gray-700 dark:text-gray-300 text">
+                        <option value="">Age category</option>
+                        @foreach($books->unique('age_category') as $book)
+                            <option value="{{ $book->age_category }}" {{ request('age_category') == $book->age_category ? 'selected' : '' }}>
+                                {{ $book->age_category }}
+                            </option>
+                        @endforeach
+                    </select>
+                    </div>
+
+                    <div class="py-1">
+                    <select name="author" id="author" class="block font-medium text-sm text-gray-700 dark:text-gray-300 text">
+                        <option value="">Author</option>
+                        @foreach($books->unique('author') as $book)
+                            <option value="{{ $book->author }}" {{ request('author') == $book->author ? 'selected' : '' }}>
+                                {{ $book->author }}
+                            </option>
+                        @endforeach
+                    </select>
+                    </div>
+
+                    <div class="py-1">
+                    <x-primary-button type="submit" >Filter</x-primary-button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
     </x-slot>
 
 
