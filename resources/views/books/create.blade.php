@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="py-5">
-                        <x-primary-button type="submit">Add book</x-primary-button>
+                            <x-primary-button type="submit">Add book</x-primary-button>
                         </div>
                     </form>
                 </div>
