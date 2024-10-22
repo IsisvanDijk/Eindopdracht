@@ -67,3 +67,8 @@
 * Gave titles to my pages
 * Made a filter
 * corrected the form
+* Made edit usable
+* Corrected the filter
+* Button changes edit / delete
+
+# 22-10

@@ -20,6 +20,12 @@
     flex-direction: row;
 }
 
+.collum {
+    display: flex;
+    flex-direction: column ;
+    justify-content: space-around;
+}
+
 img {
     height: 30vh;
 }

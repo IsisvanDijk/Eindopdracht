@@ -16,8 +16,14 @@ class BookController extends Controller
     {
         $genres = Genre::all();
 
-        // Start building the query for filtering
+        // Start building the query for filtering and search
         $books = Book::query();
+
+        // Apply search filter if provided
+        if ($request->filled('search')) {
+            $books->where('title', 'like', '%' . $request->input('search') . '%')
+                ->orWhere('author', 'like', '%' . $request->input('search') . '%');
+        }
 
         // Apply genre filter if provided
         if ($request->filled('genre_id')) {
@@ -34,7 +40,7 @@ class BookController extends Controller
             $books->where('author', $request->input('author'));
         }
 
-        // Get the filtered books with genres
+        // Get the filtered and searched books with genres
         $books = $books->with('genre')->get();
 
         return view('books.index', compact('books', 'genres'));
@@ -59,6 +65,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        // Validation
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'image' => 'nullable|url',
+            'author' => 'required|string|max:255',
+            'age_category' => 'required|string|max:255',
+            'genre_id' => 'required|exists:genres,id',
+            'description' => 'nullable|string',
+        ]);
+
         $book = new Book();
 
         $book->title = $request->input(key: 'title');
@@ -103,7 +119,7 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
 
-        // Validatie
+        // Validation
         $request->validate([
             'title' => 'required|string|max:255',
             'image' => 'nullable|url',
@@ -113,7 +129,6 @@ class BookController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        // Boek updaten met nieuwe data
         $book->update([
             'title' => $request->title,
             'image' => $request->image,
@@ -123,7 +138,7 @@ class BookController extends Controller
             'description' => $request->description,
         ]);
 
-        // Redirect naar de detailpagina van het boek
+        // Redirect to details
         return redirect()->route('books.show', $book->id)->with('success', 'Book updated successfully!');
     }
 

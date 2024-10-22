@@ -1,10 +1,20 @@
 <x-app-layout title="Book list">
     <x-slot name="header">
         <div class="hFlex">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Welcome to our book Collection') }}
-            </h2>
 
+            <div class="collum">
+                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                    {{ __('Welcome to our book Collection') }}
+                </h2>
+
+                <form action="{{ route('books.index') }}" method="GET" style="margin-bottom: 20px;">
+                    <!-- Search Input -->
+                    <input type="text" placeholder="Search by Title or Author" id="search-bar" name="search"  value="{{ request('search') }}" class="font-medium text-sm text-gray-700 dark:text-gray-300 text">
+                    <x-primary-button type="submit" >Search</x-primary-button>
+                </form>
+
+
+            </div>
             <div>
                 <form method="GET" action="{{ route('books.index') }}">
 
