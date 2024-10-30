@@ -4,7 +4,7 @@
 
             <div class="collum">
                 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    {{ __('Welcome to our book Collection') }}
+                    {{ __('Welcome to our Collection') }}
                 </h2>
 
                 <form action="{{ route('books.index') }}" method="GET" style="margin-bottom: 20px;">

@@ -4,18 +4,21 @@
         <div class="flex justify-between h-16">
             <div class="flex">
 
-                @auth
-                <!-- Dashboard, admin only -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-                @endauth
-
                 <x-nav-link href="{{ route('home') }}">Home</x-nav-link>
 
-                <x-nav-link href="{{ route('books.index') }}">Our book collection</x-nav-link>
+                <x-nav-link href="{{ route('books.index') }}">Our collection</x-nav-link>
+
+                @auth
+                    @if(\Auth::user()->is_admin)
+                        <!-- Dashboard, admin only -->
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-nav-link>
+                        </div>
+                    @else({{ route('home') }})
+                    @endif
+                @endauth
             </div>
 
             @auth

@@ -11,7 +11,12 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    if(\Auth::user()->is_admin) {
+        return view('dashboard');
+    } else {
+        return redirect('/');
+    }
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

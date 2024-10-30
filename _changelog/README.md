@@ -72,3 +72,18 @@
 * Button changes edit / delete
 
 # 22-10
+* working searchbar
+
+# 23-10
+laptop died
+
+# 29-10 
+* tried to set everything up on macbook
+* npm unknown
+* asked help roshan & dirk
+* messaged antwan about problems.
+
+# 30-10
+* started blind coding
+* first dashboard admin only
+* name small name changes on home and list.
