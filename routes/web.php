@@ -5,19 +5,15 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use \App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/dashboard', function () {
-    if(\Auth::user()->is_admin) {
-        return view('dashboard');
-    } else {
-        return redirect('/');
-    }
-
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/dashboard/{user_id}/adminToggle', [UserController::class, 'adminToggle'])
+    ->name('dashboard.adminToggle');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
