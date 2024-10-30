@@ -23,10 +23,12 @@ class UserController extends Controller
 
     public function adminToggle(Request $request, $id) {
         if (Auth::user()->is_admin) {
+
             $user = User::findOrFail($id);
-            $user->is_admin = !$user->is_admin;
+            $user->is_admin = $user->is_admin ? 0 : 1;
             $user->save();
 
+            echo "the toggle has been switched";
             return redirect()->back()->with('status', 'User role updated successfully!');
 
         }

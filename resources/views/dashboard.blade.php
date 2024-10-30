@@ -1,4 +1,4 @@
-<x-app-layout title="Dashboard">
+<x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}
@@ -32,17 +32,17 @@
                                         @endif
                                     </td>
                                     <td class="border px-4 py-2">
-                                        <label class="switch">
-                                            <input type="checkbox" onchange="this.form.submit()" {{ $user->is_admin ? 'checked' : '' }}>
-                                            <span class="slider round"></span>
-                                            <span class="switch-text">{{ $user->is_admin ? 'Remove as admin' : 'Change to admin' }}</span>
-                                        </label>
 
-                                        <form action="{{ route('dashboard.adminToggle', $user->id) }}" method="POST" class="inline hidden">
+                                        <form action="{{ route('dashboard.adminToggle', $user->id) }}" method="POST" class="inline space">
                                             @csrf
-                                            @method('POST')
+
+                                            <label class="switch">
+                                                <input type="checkbox" {{ $user->is_admin ? 'checked' : '' }}>
+                                                <span class="slider round"></span>
+                                                <span class="switch-text">{{ $user->is_admin ? 'Remove as admin' : 'Change to admin' }}</span>
+                                            </label>
+                                            <x-primary-button type="submit">Submit</x-primary-button>
                                         </form>
-                                    </td>
                                     </td>
                                 </tr>
                                 </tbody>

@@ -12,7 +12,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::post('/dashboard/{user_id}/adminToggle', [UserController::class, 'adminToggle'])
+Route::post('/dashboard/adminToggle/{user}', [UserController::class, 'adminToggle'])
     ->name('dashboard.adminToggle');
 
 Route::middleware('auth')->group(function () {
@@ -27,4 +27,4 @@ Route::middleware('auth')->group(function () {
 Route::resource('/books', BookController::class);
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

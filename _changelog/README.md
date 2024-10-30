@@ -87,3 +87,5 @@ laptop died
 * started blind coding
 * first dashboard admin only
 * name small name changes on home and list.
+* working dashboard
+* roles are changeable
