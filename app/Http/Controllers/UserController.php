@@ -10,13 +10,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        // Controleer of de huidige gebruiker een admin is
+        // Check if user is an admin
         if (Auth::user()->is_admin) {
-            // Haal alle gebruikers op en toon het dashboard
+            // Get all users and show them on the dashboard
             $users = User::all();
             return view('dashboard', compact('users'));
         } else {
-            // Als de gebruiker geen admin is, doorverwijzen naar home
+            // if user is not an admin redirect to home
             return redirect('/');
         }
     }
