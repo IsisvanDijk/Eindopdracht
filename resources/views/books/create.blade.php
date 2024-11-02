@@ -14,38 +14,54 @@
                         @csrf
                         <div>
                             <x-input-label for="title">Title</x-input-label>
-                            <x-text-input type="text" id="title" name="title"/>
+                            <x-text-input type="text" id="title" name="title" class="{{ $errors->has('title') ? 'border-red-500' : '' }}"/>
+                            @error('title')
+                            <span class="text-red-600 text-sm">{{ 'Please fill in a title' }}</span>
+                            @enderror
                         </div>
+
                         <div>
-                            <x-input-label for="title">Image URL</x-input-label>
+                            <x-input-label for="image">Image URL</x-input-label>
                             <x-text-input type="text" id="image" name="image"/>
                         </div>
                         <div>
                             <x-input-label for="author">Author</x-input-label>
-                            <x-text-input type="text" id="author" name="author"/>
+                            <x-text-input type="text" id="author" name="author" class="{{ $errors->has('author') ? 'border-red-500' : '' }}"/>
+                            @error('author')
+                            <span class="text-red-600 text-sm">{{ 'Please fill in an author' }}</span>
+                            @enderror
                         </div>
                         <div>
                             <x-input-label for="age_category">Select Age Category</x-input-label>
-                            <select id="age_category" name="age_category" class="block font-medium text-sm text-gray-700 dark:text-gray-300 text" required>
+                            <select id="age_category" name="age_category" class="block font-medium text-sm text-gray-700 dark:text-gray-300 text {{ $errors->has('age_category') ? 'border-red-500' : '' }}">
                                 <option value="">-- Choose an Age Category --</option>
                                 <option value="adult">adult</option>
                                 <option value="new_adult">new adult</option>
                                 <option value="young_adult">young adult</option>
                             </select>
+                            @error('age_category')
+                            <span class="text-red-600 text-sm">{{ 'Please select an age category' }}</span>
+                            @enderror
                         </div>
                         <div>
                             <x-input-label for="genre" > Select Genre </x-input-label>
-                            <select id="genre" name="genre_id" class="block font-medium text-sm text-gray-700 dark:text-gray-300 text" required>
+                            <select id="genre" name="genre_id" class="block font-medium text-sm text-gray-700 dark:text-gray-300 text {{ $errors->has('genre') ? 'border-red-500' : '' }}">
                                 <option value="">-- Choose a Genre --</option>
                                 @foreach ($genres as $genre)
                                     <option value="{{ $genre->id }}">{{ $genre->name }}</option>
                                 @endforeach
                             </select>
+                            @error('genre_id')
+                            <span class="text-red-600 text-sm">{{ 'Please select a genre' }}</span>
+                            @enderror
                         </div>
 
                         <div>
                             <x-input-label for="description">Description</x-input-label>
-                            <textarea class="block font-medium text-sm text-gray-700 dark:text-gray-300 text" type="text" id="description" name="description"></textarea>
+                            <textarea type="text" id="description" name="description" class="block font-medium text-sm text-gray-700 dark:text-gray-300 text {{ $errors->has('description') ? 'border-red-500' : '' }}"></textarea>
+                            @error('description')
+                            <span class="text-red-600 text-sm">{{ 'Please add an description' }}</span>
+                            @enderror
                         </div>
 
                         <div class="py-5">

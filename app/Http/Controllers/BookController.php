@@ -72,7 +72,7 @@ class BookController extends Controller
             'author' => 'required|string|max:255',
             'age_category' => 'required|string|max:255',
             'genre_id' => 'required|exists:genres,id',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
         ]);
 
         $book = new Book();
@@ -126,7 +126,7 @@ class BookController extends Controller
             'author' => 'required|string|max:255',
             'age_category' => 'required|string|max:255',
             'genre_id' => 'required|exists:genres,id',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
         ]);
 
         $book->update([
