@@ -89,3 +89,6 @@ laptop died
 * name small name changes on home and list.
 * working dashboard
 * roles are changeable
+
+# 02-11
+* Titles to pages
