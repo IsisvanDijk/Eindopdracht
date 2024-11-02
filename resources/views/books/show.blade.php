@@ -21,7 +21,7 @@
                             <li> > Posted by: {{ $book->user->name }} <li/>
                         </ul>
 
-                        @if(Auth::user()->is_admin)
+                        @if(Auth::check() && Auth::user()->is_admin)
                         <form action="{{ route('books.edit', $book->id) }}" method="get">
                             <x-primary-button type="submit">Edit Book</x-primary-button>
                         </form>

@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use function Sodium\increment;
 
 class BookController extends Controller
 {
@@ -52,14 +54,28 @@ class BookController extends Controller
      */
     public function create()
     {
+        if (!auth()->check()) {
+            // If a user is not logged in and tries to enter the create, send back to index with error
+            return redirect()->route('books.index')->with('error', 'You must be logged in to create a book.');
+        }
+
+
+        // Get logged in user
+        $user = auth()->user();
+
+        if ($user->viewed_books < 3) {
+            return redirect()->route('books.index')->with('error', 'You must view at least 3 books before you can create one <3');
+        }
+
         // Fetch all genres from the genres table
         $genres = Genre::all(); // Fetch all genres
 
-        $viewedBooks = session('viewed_books', []);
 
-        if (count($viewedBooks) < 3) {
-            return redirect()->route('books.index')->with('error', 'You must look at at least 3 books before you can create one <3');
-        }
+//        $viewedBooks = session('viewed_books', []);
+//
+//        if (count($viewedBooks) < 3) {
+//            return redirect()->route('books.index')->with('error', 'You must look at at least 3 books before you can create one <3');
+//        }
 
         // Pass genres to the view
         return view('books.create', compact('genres'));
@@ -97,16 +113,19 @@ class BookController extends Controller
 
     /**
      * Display the specified resource.
+     * @param string $id
+     * @param $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
      */
     public function show(string $id)
     {
         $book= book::find($id);
 
-        $viewedBooks = session()->get('viewed_Books', []);
+        if (auth()->check()) {
+            $user = auth()->user(); //get logged in user
 
-        if (!in_array($book->id, $viewedBooks)) {
-            $viewedBooks[] = $book->id;
-            session()->put('viewed_Books', $viewedBooks);
+            //add book to viewed books counter
+            $user->increment('viewed_books');
         }
 
         return view('books.show', compact('book'));
@@ -118,8 +137,14 @@ class BookController extends Controller
     public function edit(string $id)
     {
         $book = Book::findOrFail($id);
-        $genres = Genre::all();
-        return view('books.edit', compact('book', 'genres'));
+
+        if (auth()->check() && $book->user_id === auth()->user()->id) {
+            $genres = Genre::all();
+            return view('books.edit', compact('book', 'genres'));
+        } else {
+            return redirect()->route('books.index');
+        }
+
     }
 
 
@@ -131,6 +156,10 @@ class BookController extends Controller
     public function update(Request $request, string $id)
     {
         $book = Book::findOrFail($id);
+
+        if ($book->user_id !== auth()->id()) {
+            return redirect()->route('books.index')->with('error', 'You are not authorized to update this book.');
+        }
 
         // Validation
         $request->validate([
