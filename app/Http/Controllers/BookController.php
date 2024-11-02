@@ -55,6 +55,12 @@ class BookController extends Controller
         // Fetch all genres from the genres table
         $genres = Genre::all(); // Fetch all genres
 
+        $viewedBooks = session('viewed_books', []);
+
+        if (count($viewedBooks) < 3) {
+            return redirect()->route('books.index')->with('error', 'You must look at at least 3 books before you can create one <3');
+        }
+
         // Pass genres to the view
         return view('books.create', compact('genres'));
 
@@ -95,6 +101,13 @@ class BookController extends Controller
     public function show(string $id)
     {
         $book= book::find($id);
+
+        $viewedBooks = session()->get('viewed_Books', []);
+
+        if (!in_array($book->id, $viewedBooks)) {
+            $viewedBooks[] = $book->id;
+            session()->put('viewed_Books', $viewedBooks);
+        }
 
         return view('books.show', compact('book'));
     }
